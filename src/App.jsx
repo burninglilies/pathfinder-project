@@ -3,7 +3,9 @@ import Pathfinder from './components/pathfinder/Pathfinder'
 
 const App = () => {
     return (
-        <Pathfinder/>
+        <div className="App">
+            <Pathfinder/>
+        </div>
     )
 }
 

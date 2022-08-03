@@ -1,0 +1,12 @@
+.grid {
+  margin: 180px 0 0;
+}
+
+.button__dijkstra {
+  background: #C2F8CB;
+  padding: 8px 8px;
+}
+
+.button__dijkstra:hover {
+  background-color: aliceblue;
+}
