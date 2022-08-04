@@ -1,10 +1,19 @@
+
 .grid {
   margin: 180px 0 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 2.5rem;
 }
 
 .button__dijkstra {
   background: #C2F8CB;
   padding: 8px 8px;
+  border: 1px solid black;
+  width: 250px;
+  margin-right: auto;
 }
 
 .button__dijkstra:hover {
