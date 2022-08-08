@@ -1,21 +1,41 @@
 
-.grid {
-  margin: 180px 0 0;
+.sections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* ============= GENERATE SHORTEST PATH SECTION ============= */
+.section__buttons {
+  background: lightblue;
 }
 
 .buttons {
+  
   display: flex;
+  justify-content: space-around;
   gap: 2.5rem;
+  height: 50px;
 }
 
 .button__dijkstra {
   background: #C2F8CB;
   padding: 8px 8px;
   border: 1px solid black;
-  width: 250px;
-  margin-right: auto;
+
 }
 
 .button__dijkstra:hover {
   background-color: aliceblue;
 }
+
+/* ============= GENERATE SHORTEST PATH SECTION ============= */
+.grid {
+  background: gray;
+  width: auto;
+}
+
+/* ============= CREATE MAZE SECTION ============= */
+
+
+
+/* ============= SLIDER SECTION ============= */

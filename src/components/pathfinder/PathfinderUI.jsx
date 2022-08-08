@@ -19,17 +19,21 @@ export default class PathfinderUI extends Component {
         const {grid, mouseIsPressed} = this.state;
     
         return (
-          <>
-            <div className='buttons'>
-                <button className='button__dijkstra'>
-                    Visualize Dijkstra's Algorithm
-                </button>
-                <button className='button__dijkstra'>
-                    Button 2
-                </button>
-                <button className='button__dijkstra'>
-                    Button 3
-                </button>
+          <div className='sections'>
+            <div className='section__buttons'>
+                <h1>Find Shortest Path:</h1>
+                <div className="buttons">
+                    <button className='button__dijkstra'>
+                        Visualize Dijkstra's Algorithm
+                    </button>
+                    <button className='button__dijkstra'>
+                        Button 2
+                    </button>
+                    <button className='button__dijkstra'>
+                        Button 3
+                    </button>
+                </div>
+                
             </div>
             <div className="grid">
               {grid.map((row, rowIdx) => {
@@ -57,7 +61,13 @@ export default class PathfinderUI extends Component {
                 );
               })}
             </div>
-          </>
+            <div className="section__maze">
+              <h1>create maze</h1>
+            </div>
+            <div className='section__slider'>
+              <h1>(sliders)</h1>
+            </div>
+          </div>
         );
       }
 }
