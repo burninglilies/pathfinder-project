@@ -21,19 +21,29 @@ export default class PathfinderUI extends Component {
         return (
           <div className='sections'>
             <div className='section__buttons'>
-                <h1>Find Shortest Path:</h1>
+                <h1>Pathfinder Visualizer</h1>
+                <p>Visualize:</p>
                 <div className="buttons">
-                    <button className='button__dijkstra'>
-                        Visualize Dijkstra's Algorithm
-                    </button>
-                    <button className='button__dijkstra'>
-                        Button 2
-                    </button>
-                    <button className='button__dijkstra'>
-                        Button 3
-                    </button>
+                    <button>Dijkstra's Algorithm</button>
+                    <button>Minimum Spanning Tree</button>
+                    <button>Random Walk</button>
                 </div>
-                
+                <p>Edit Grid:</p>
+                <div className="buttons">
+                    <button>Clear Everything</button>
+                    <button>Clear Walls</button>
+                    <button>Clear Path</button>
+                </div>
+                <p>Generate a Maze:</p>
+                <div className="buttons">
+                    <button>Simple Random</button>
+                    <button>Recursively Divided</button>
+                    <button>Fun One</button>
+                </div>
+                <p>Add Weights:</p>
+                <div className="buttons">
+                    <button></button>
+                </div>
             </div>
             <div className="grid">
               {grid.map((row, rowIdx) => {
