@@ -74,6 +74,22 @@ export default class Pathfinder extends Component {
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
+  clearGrid() {
+
+  }
+
+  clearWalls() {
+
+  }
+
+  clearPath() {
+
+  }
+
+  makeMaze() {
+    
+  }
+
   render() {
     const {grid, mouseIsPressed} = this.state;
 
