@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Node from './node/Node';
+import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
+
 
 export default class PathfinderUI extends Component {
     constructor() {
@@ -14,6 +16,56 @@ export default class PathfinderUI extends Component {
         const grid = getInitialGrid();
         this.setState({grid});
     }
+  
+    handleMouseDown(row, col) {
+      const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+      this.setState({grid: newGrid, mouseIsPressed: true});
+    }
+  
+    handleMouseEnter(row, col) {
+      if (!this.state.mouseIsPressed) return;
+      const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+      this.setState({grid: newGrid});
+    }
+  
+    handleMouseUp() {
+      this.setState({mouseIsPressed: false});
+    }
+  
+    animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
+      for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+        if (i === visitedNodesInOrder.length) {
+          setTimeout(() => {
+            this.animateShortestPath(nodesInShortestPathOrder);
+          }, 10 * i);
+          return;
+        }
+        setTimeout(() => {
+          const node = visitedNodesInOrder[i];
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            'node node-visited';
+        }, 10 * i);
+      }
+    }
+  
+    animateShortestPath(nodesInShortestPathOrder) {
+      for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
+        setTimeout(() => {
+          const node = nodesInShortestPathOrder[i];
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            'node node-shortest-path';
+        }, 50 * i);
+      }
+    }
+  
+    visualizeDijkstra() {
+      const {grid} = this.state;
+      const startNode = grid[START_NODE_ROW][START_NODE_COL];
+      const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+      const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
+      const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+      this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+    }
 
     render() {
         const {grid, mouseIsPressed} = this.state;
@@ -24,7 +76,7 @@ export default class PathfinderUI extends Component {
                 <h1>Pathfinder Visualizer</h1>
                 <p>Visualize:</p>
                 <div className="buttons">
-                    <button>Dijkstra's Algorithm</button>
+                    <button onClick={() => this.visualizeDijkstra()}>Dijkstra's Algorithm</button>
                     <button>Minimum Spanning Tree</button>
                     <button>Random Walk</button>
                 </div>
@@ -110,4 +162,15 @@ const getInitialGrid = () => {
       isWall: false,
       previousNode: null,
     };
+  };
+
+  const getNewGridWithWallToggled = (grid, row, col) => {
+    const newGrid = grid.slice();
+    const node = newGrid[row][col];
+    const newNode = {
+      ...node,
+      isWall: !node.isWall,
+    };
+    newGrid[row][col] = newNode;
+    return newGrid;
   };
